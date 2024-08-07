@@ -1,13 +1,15 @@
 /* choose colors for theme */
 
 :root{
-    --primary : #004835 ;
-    --secondary : #3b2600 ;
+    --primary : #533ba1 ;
+    --secondary :#42006C ;
+    --third :#797979;
 }
 
 .bg-primary{
-    background-color: var(--primary) !important ;   /* bg = background */
+    background-color: var(--primary) !important ;
 }
+
 .bg-secondary{
     background-color: var(--secondary) !important ;
 }
@@ -17,6 +19,9 @@
 }
 .text-secondary{
     color: var(--secondary) !important ;
+}
+.text-third{
+    color: var(--third);
 }
 
 .text-white{
