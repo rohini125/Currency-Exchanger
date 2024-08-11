@@ -1,9 +1,12 @@
 /* choose colors for theme */
 
 :root{
-    --primary : #533ba1 ;
+    --primary :#004835  ;
+    --secondary : #5b2600;
+    
+    /* --primary : #533ba1 ;
     --secondary :#42006C ;
-    --third :#797979;
+    --third :#797979; */
 }
 
 .bg-primary{
@@ -20,9 +23,9 @@
 .text-secondary{
     color: var(--secondary) !important ;
 }
-.text-third{
+/* .text-third{
     color: var(--third);
-}
+} */
 
 .text-white{
     color: #fff !important ;
@@ -30,3 +33,4 @@
 .text-black{
     color: #000 !important ;
 }
+
