@@ -1,86 +1,95 @@
-import React from 'react';
+import React from "react";
 import { Col, Form, Row } from "antd";
+import { useNavigate } from "react-router-dom";
 
+//gutter -> space between columns.
+// span={16} -> 16 columns in horizontally.
+// span={24} -> 24 columns in horizontally.
 
 function Register() {
-   
-    const onFinish = (values) => {
-        console.log("Received values of form: ", values);
-    };
+  const navigate = useNavigate();
+  const onFinish = (values) => {
+    console.log("Received values of form: ", values);
+  };
 
-    return (
-        <div className="m-5">
-            <div className="flex items-center justify-between">
-                <h1 className="text-2xl">Payment-REGESTER</h1>
+  return (
+    <div className="m-5">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl">Payment-REGESTER</h1>
 
-                <h1 className="text-5m underline">
-                    Already a member , Log in
-                </h1>
-            </div>
-            <hr />
-            <form layout="vertical" onFinish={onFinish}>
-            <Row gutter={16}>
-                    <Col span={6}>
-                        <Form.Item lable="First Name" name="firstname">
-                            <input type="text" />
-                        </Form.Item>
-                    </Col>
-                    <Col span={6}>
-                        <Form.Item lable="Last Name" name="lastname">
-                            <input type="text" />
-                        </Form.Item>
-                    </Col>
-                    <Col span={6}>
-                        <Form.Item lable="Email" name="email">
-                            <input type="text" />
-                        </Form.Item>
-                    </Col>
-                    <Col span={6}>
-                        <Form.Item lable="Mobile" name="mobile">
-                            <input type="text" />
-                        </Form.Item>
-                    </Col>
-                    <Col span={6}>
-                       <Form.Item lable="Identification Type" name="identificationtype">
-                           <select>
-                            <option value="NATIONAL ID">National Id</option>
-                            <option value="PASSPORT">Passport</option>
-                            <option value="DRIVING LICENCE">Driving Licence</option>
-                            <option value="SOCIAL CARD">Social Security Card</option>
-                           </select>
-                        </Form.Item>
-                    </Col>
-                    <Col span={6}>
-                        <Form.Item lable="Identification Number" name="identificationNumber">
-                            <input type="text" />
-                        </Form.Item>
-                    </Col>
-                    <Col span={24}>
-                        <Form.Item lable="Address" name="address">
-                            <input type="textarea" />
-                        </Form.Item>
-                    </Col>
+        <h1 className="text-sm underline" onClick={() => navigate("/login")}>
+          Already a member? Login
+        </h1>
+      </div>
+      <hr />
+      <Form layout="vertical" onFinish={onFinish}>
+        <Row gutter={32}>
+          <Col span={6}>
+            <Form.Item label="First Name" name="firstName">
+              <input type="text" />
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item label="Last Name" name="lastName">
+              <input type="text" />
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item label="Email" name="email">
+              <input type="text" />
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item label="Mobile" name="mobile">
+              <input type="text" />
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item label="Identification Type" name="identificationType">
+              <select>
+                <option value="NATIONAL ID">National Id</option>
+                <option value="AADHAR CARD">Aadhar Card</option>
+                <option value="PAN CARD">Pan Card</option>
+                <option value="PASSPORT">Passport</option>
+                <option value="DRIVING LICENCE">Driving Licence</option>
+              </select>
+            </Form.Item>
+          </Col>
+          <Col span={6}>
+            <Form.Item
+              label="Identification Number"
+              name="identificationNumber"
+            >
+              <input type="text" />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="Address" name="address">
+              <textarea />
+            </Form.Item>
+          </Col>
 
-                    <Col span={6}>
-                        <Form.Item lable="Password" name="password">
-                            <input type="password" />
-                        </Form.Item>
-                    </Col>
+          <Col span={6}>
+            <Form.Item label="Password" name="password">
+              <input type="password" />
+            </Form.Item>
+          </Col>
 
-                    <Col span={6}>
-                        <Form.Item lable="Confirm Password" name="confirmPassword">
-                            <input type="password" />
-                        </Form.Item>
-                    </Col>
-                </Row>
-                <div className="flex justify-end">
-                    <button className="primary-contained-btn" type="submit">
-                        Register
-                    </button>
-                </div>
-            </form>
+          <Col span={6}>
+            <Form.Item label="Confirm Password" name="confirmPassword">
+              <input type="password" />
+            </Form.Item>
+          </Col>
+        </Row>
+        <div className="flex justify-end">
+          <button className="primary-contained-btn" type="submit">
+            Register
+          </button>
         </div>
-    );
+      </Form>
+    </div>
+  );
 }
 
 export default Register;
+

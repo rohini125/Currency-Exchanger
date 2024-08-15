@@ -83,10 +83,12 @@
 .m-4{
     margin: 40px;
 }
+.mr-4{
+    margin-right: 40px;
+}
 .m-5{
     margin: 50px;
 }
-
 .p-1{
     padding: 10px;
 }
