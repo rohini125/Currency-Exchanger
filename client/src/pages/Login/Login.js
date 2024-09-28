@@ -1,47 +1,63 @@
-
-import React from 'react';
-import { Col, Form, Row , Input} from "antd";
-import {useNavigate} from "react-router-dom";
+import React from "react";
+import { Form, Input, Button } from "antd";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-    const navigate = useNavigate();
-    const onFinish = (values) => {
-        console.log("Received values of form: ", values);
-    };
+  const navigate = useNavigate();
 
-    return (
-        <div className="bg-primary flex items-center justify-center h-screen">
-            <div className="card w-400 p-2">
-                <div className="flex items-center justify-between">
-                    <h1 className="text-2xl">Payment-Login</h1>
-                </div>
-                 <hr />
-                <Form layout="vertical" onFinish={onFinish}>
-                    <Row gutter={16}>  
-                        
-                        <Col span={24}>
-                            <Form.Item label="Email" name="email">
-                                <Input type="text"/>
-                            </Form.Item>
-                        </Col>
-                        
-                        <Col span={24}> 
-                            <Form.Item label="Password" name="password">
-                                <Input type="password"/>
-                            </Form.Item>
-                        </Col>
-                    </Row> 
+  const onFinish = (values) => {
+    console.log("Received values of form: ", values);
+    // Handle login logic here (e.g., API request to verify user)
+    // Navigate to payment page or dashboard after successful login
+    navigate("/payment");
+  };
 
-                        <button className="primary-contained-btn w-100" type="submit">
-                            Login
-                        </button>
-                        <h1 className="text-sm underline mt-2" onClick={()=> navigate("/register")}>
-                        Already a member ,Click Here To Register
-                        </h1>
-                </Form>
-            </div>
+  return (
+    <div className="m-5">
+      <h1 className="text-2xl">Login</h1>
+      <hr />
+      <Form layout="vertical" onFinish={onFinish}>
+        {/* Email */}
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            { required: true, message: "Please enter your email" },
+            { type: "email", message: "Please enter a valid email" },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        {/* Password */}
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: "Please enter your password" }]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <div className="flex justify-end">
+          <Button type="primary" htmlType="submit">
+            Login
+          </Button>
         </div>
-    );
+      </Form>
+
+      <div className="mt-5">
+        <p>
+          Don't have an account?{" "}
+          <span
+            className="text-blue-500 cursor-pointer"
+            onClick={() => navigate("/register")}
+          >
+            Register
+          </span>
+        </p>
+      </div>
+    </div>
+  );
 }
 
 export default Login;
