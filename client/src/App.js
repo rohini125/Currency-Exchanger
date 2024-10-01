@@ -4,15 +4,17 @@ import Register from "./Pages/Register.js";
 import Login from "./Pages/Login.js";
 import Header from "./Pages/Header.js";
 import Footer from "./Pages/Footer.js";
+import Home from "./Pages/Home.js";
 
 function App() {
   return (
-    <div className="bg-slate-400">
+    <div className="bg-slate-400 h-full w-full">
     <Header/>
     <Routes>
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/payment" element={<div>Payment Page Placeholder</div>} />
+      <Route path="/" element={<Home />} />
+      {/* <Route path="/payment" element={<div>Payment Page Placeholder</div>} /> */}
     </Routes>
     <Footer/>
     </div>
