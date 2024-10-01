@@ -16,7 +16,7 @@ function Register() {
       <Card
         title="Payment - REGISTER"
         bordered={false}
-        className="w-full max-w-lg p-6 shadow-lg"
+        className="w-full max-w-lg p-6 shadow-lg shadow-md shadow-gray-500/50 drop-shadow-lg drop-shadow-gray-500/50"
       >
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-2xl font-bold text-gray-800">Create an Account</h1>
@@ -156,3 +156,4 @@ function Register() {
 }
 
 export default Register;
+
