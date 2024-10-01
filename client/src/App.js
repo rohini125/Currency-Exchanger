@@ -7,7 +7,7 @@ import Footer from "./Pages/Footer.js";
 
 function App() {
   return (
-    <>
+    <div className="bg-slate-400">
     <Header/>
     <Routes>
       <Route path="/register" element={<Register />} />
@@ -15,7 +15,7 @@ function App() {
       <Route path="/payment" element={<div>Payment Page Placeholder</div>} />
     </Routes>
     <Footer/>
-    </>
+    </div>
   );
 }
 
