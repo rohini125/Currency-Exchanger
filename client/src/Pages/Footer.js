@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
-import { faHome, faChartBar, faExchangeAlt, faWallet , faHistory} from '@fortawesome/free-solid-svg-icons'; // Import icons
+import { faHome, faChartBar,faWallet , faHistory} from '@fortawesome/free-solid-svg-icons'; // Import icons
 
 const Footer = () => {
   return (
@@ -18,12 +18,6 @@ const Footer = () => {
             <Link to="/markets">
               <FontAwesomeIcon icon={faChartBar} size="2x" />
               <div className='mt-2'>Markets</div>
-            </Link>
-          </div>
-          <div className="flex-1 text-center">
-            <Link to="/transactions">
-              <FontAwesomeIcon icon={faExchangeAlt} size="2x" />
-              <div className='mt-2'>Transaction</div>
             </Link>
           </div>
           <div className="flex-1 text-center">
