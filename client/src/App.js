@@ -4,6 +4,7 @@ import Register from "./Pages/Register.js";
 import Login from "./Pages/Login.js";
 import Header from "./Pages/Header.js";
 import Footer from "./Pages/Footer.js";
+import 'tailwindcss/tailwind.css';
 
 function App() {
   return (
