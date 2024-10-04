@@ -1,41 +1,114 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { faUser,faQrcode,faBell } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FiBell, FiHelpCircle, FiUser } from 'react-icons/fi';
+import { MdQrCode } from 'react-icons/md'; // Importing QR code icon from Material Design
 
 const Header = () => {
+  const [profileOpen, setProfileOpen] = useState(false);
+
+  const toggleProfile = () => {
+    setProfileOpen(!profileOpen);
+  };
+
   return (
-    <header className="bg-purple-900 text-white p-2 ">
-      <div className="flex p-2">
-        <div className="flex justify-between w-full p-2">
-          <Link to="/profile">
-            <FontAwesomeIcon icon={faUser} size="2x" />
+    <nav className="bg-blue-600 p-4 shadow-md fixed top-0 left-0 w-full z-50">
+      <div className="container mx-auto flex justify-between items-center relative">
+        {/* Profile Icon and QR Code Icon */}
+        <div className="flex items-center space-x-4">
+          <button onClick={toggleProfile} className="text-white flex items-center focus:outline-none">
+            <FiUser className="h-6 w-6" />
+          </button>
+          <button className="text-white flex items-center focus:outline-none">
+            <MdQrCode className="h-6 w-6" />
+          </button>
+          {profileOpen && (
+            <div className="absolute left-0 top-12 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-50">
+              <Link to="/account" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Account</Link>
+              <Link to="/settings" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</Link>
+              <Link to="/logout" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</Link>
+            </div>
+          )}
+        </div>
+
+        {/* Right Icons (Notification and Help) - Always Visible */}
+        <div className="flex space-x-6 items-center">
+          <Link to="/notification" className="flex items-center text-white hover:underline">
+            <FiBell className="h-5 w-5" />
           </Link>
-          <Link to="/QRcode">
-            <FontAwesomeIcon icon={faQrcode} size="2x" />
+          <Link to="/help" className="flex items-center text-white hover:underline">
+            <FiHelpCircle className="h-5 w-5" />
           </Link>
-          {/* <span className="flex">
-            <input
-              type="search"
-              placeholder="Search"
-              className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-64 appearance-none leading-normal"
-            />
-            <Link to="/search" className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-2 appearance-none leading-normal">
-              <FontAwesomeIcon icon={faSearch} size="2x" />
-            </Link>
-          </span> */}
-          <Link to="/notifications">
-            <FontAwesomeIcon icon={faBell} size="2x"/>
-          </Link>
-          <Link to="/Login">
-            <p className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</p>
+          {/* Login Button */}
+          <Link
+            to="/login"
+            className="flex items-center text-white hover:underline bg-blue-700 px-4 py-2 rounded-md"
+          >
+            Login
           </Link>
         </div>
       </div>
-    </header>
+    </nav>
   );
 };
 
 export default Header;
+
+
+
+
+
+
+// import React, { useState } from 'react';
+// import { FiBell, FiHelpCircle, FiUser } from 'react-icons/fi';
+// import { MdQrCode } from 'react-icons/md'; // Importing QR code icon from Material Design
+
+// const Header = () => {
+//   const [profileOpen, setProfileOpen] = useState(false);
+
+//   const toggleProfile = () => {
+//     setProfileOpen(!profileOpen);
+//   };
+
+//   return (
+//     <nav className="bg-blue-600 p-4 shadow-md">
+//       <div className="container mx-auto flex justify-between items-center relative">
+//         {/* Profile Icon and QR Code Icon */}
+//         <div className="flex items-center space-x-4">
+//           <button onClick={toggleProfile} className="text-white flex items-center focus:outline-none">
+//             <FiUser className="h-6 w-6" />
+//           </button>
+//           <button className="text-white flex items-center focus:outline-none">
+//             <MdQrCode className="h-6 w-6" />
+//           </button>
+//           {profileOpen && (
+//             <div className="absolute left-0 top-12 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-50">
+//               <a href="/account" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Account</a>
+//               <a href="/settings" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+//               <a href="/logout" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</a>
+//             </div>
+//           )}
+//         </div>
+
+//         {/* Right Icons (Notification and Help) - Always Visible */}
+//         <div className="flex space-x-6 items-center">
+//           <a href="/notification" className="flex items-center text-white hover:underline">
+//             <FiBell className="h-5 w-5" />
+//           </a>
+//           <a href="/help" className="flex items-center text-white hover:underline">
+//             <FiHelpCircle className="h-5 w-5" />
+//           </a>
+//           {/* Login Button */}
+//           <a
+//             href="/login"
+//             className="flex items-center text-white hover:underline bg-blue-700 px-4 py-2 rounded-md"
+//           >
+//             Login
+//           </a>
+//         </div>
+//       </div>
+//     </nav>
+//   );
+// };
+
+// export default Header;
 
