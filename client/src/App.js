@@ -4,10 +4,7 @@ import Register from "./Pages/Register.js";
 import Login from "./Pages/Login.js";
 import Header from "./Pages/Header.js";
 import Footer from "./Pages/Footer.js";
-import CurrencyConverter from "./Pages/currency-converter.js";
-import Markets from "./Pages/Markets.js";
-import HelpPage from "./Pages/HelpPage.js";
-import Notifications from "./Pages/Notifications.js"
+import Home from "./Pages/Home.js";
 
 function App() {
   return (
