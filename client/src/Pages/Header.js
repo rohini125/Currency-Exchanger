@@ -11,7 +11,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="bg-blue-600 p-4 shadow-md fixed top-0 left-0 w-full z-50">
+    <nav className="bg-blue-600 p-4 mb-50 shadow-md fixed top-0 left-0 w-full z-50">
       <div className="container mx-auto flex justify-between items-center relative">
         {/* Profile Icon and QR Code Icon */}
         <div className="flex items-center space-x-4">

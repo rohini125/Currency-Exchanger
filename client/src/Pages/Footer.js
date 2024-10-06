@@ -5,7 +5,7 @@ import { faHome, faChartBar, faWallet, faHistory } from '@fortawesome/free-solid
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-600 text-white p-4 fixed bottom-0 left-0 w-full">
+    <footer className="bg-blue-600 text-white mt-20 p-4 fixed bottom-0 left-0 w-full">
       <div className="container mx-auto flex justify-around items-center flex-wrap">
         <div className="flex flex-col items-center w-1/4 md:w-1/5">
           <Link to="/" className="text-center">

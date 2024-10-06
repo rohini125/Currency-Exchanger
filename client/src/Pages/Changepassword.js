@@ -30,7 +30,7 @@ const Changepassword = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+        <div className="max-w-md mx-auto mt-20 bg-white rounded-lg shadow-md p-6">
             <h2 className="text-2xl font-semibold mb-4">Change Password</h2>
             {error && <p className="text-red-500 mb-4">{error}</p>}
             <form onSubmit={handleChangePassword}>

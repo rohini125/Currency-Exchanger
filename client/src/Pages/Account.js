@@ -9,9 +9,9 @@ const Account = () => {
     };
 
     return (
-        <div className="max-w-sm mx-auto bg-white rounded-lg shadow-md p-6">
+        <div className="max-w-sm mx-auto  mt-20 bg-white rounded-lg shadow-md p-6">
             <div className="text-center mb-6">
-                <img src=".././Assets/Profile.png" alt="Profile" className="w-24 h-24 rounded-full mx-auto mb-4" />
+                <img src='.././As' alt="Profile" className="w-24 h-24 rounded-full mx-auto mb-4" />
                 <h2 className="text-xl font-semibold">{user.name}</h2>
                 <p className="text-gray-500">{user.email}</p>
             </div>

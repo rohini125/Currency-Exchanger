@@ -20,7 +20,7 @@ const SecurityQuestions = () => {
     };
 
     return (
-        <div className="max-w-lg mx-auto bg-white rounded-lg shadow-md p-6">
+        <div className="max-w-lg mx-auto mt-20 mb-30 bg-white rounded-lg shadow-md p-6">
             <h2 className="text-2xl font-semibold mb-4">Security Questions</h2>
             <p className="text-gray-600 mb-6">
                 Please answer the security questions below for account recovery purposes.
@@ -39,11 +39,8 @@ const SecurityQuestions = () => {
                     </div>
                 ))}
             </div>
-            <button 
-                onClick={handleSaveChanges} 
-                className="mt-6 w-full bg-blue-500 text-white rounded-md py-2 hover:bg-blue-600"
-            >
-                Save Changes
+            <button onClick={handleSaveChanges} className="mt-6 w-full mb-20 bg-blue-500 text-white rounded-md py-2 hover:bg-blue-600">
+           Save Changes
             </button>
         </div>
     );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const PushNotifications = () => {
+const Notifications = () => {
     const [notificationsEnabled, setNotificationsEnabled] = useState(true);
     const [notificationTypes, setNotificationTypes] = useState({
         marketing: true,
@@ -25,8 +25,8 @@ const PushNotifications = () => {
     };
 
     return (
-        <div className="max-w-lg mx-auto bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-2xl font-semibold mb-4">Push Notifications</h2>
+        <div className="max-w-lg mx-auto mt-20 bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-2xl font-semibold  mt-2 mb-4">Notifications</h2>
             <div className="mb-6">
                 <label className="inline-flex items-center">
                     <input
@@ -82,4 +82,4 @@ const PushNotifications = () => {
     );
 };
 
-export default PushNotifications;
+export default Notifications;
