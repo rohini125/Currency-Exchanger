@@ -1,68 +1,85 @@
 import React, { useState } from 'react';
-import { ChakraProvider, Alert, AlertIcon, AlertTitle, AlertDescription, Button, Container, Box } from '@chakra-ui/react';
 
-// Function to notify the user
-async function notifyUser(notificationText = "Thank you for enabling notifications") {
-  if (!("Notification" in window)) {
-    alert("Browser does not support notifications");
-    return;
-  }
+const PushNotifications = () => {
+    const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+    const [notificationTypes, setNotificationTypes] = useState({
+        marketing: true,
+        transaction: true,
+        reminders: true,
+    });
 
-  if (Notification.permission === "granted") {
-    new Notification(notificationText);
-  } else if (Notification.permission !== "denied") {
-    const permission = await Notification.requestPermission();
-    if (permission === "granted") {
-      new Notification(notificationText);
-    }
-  }
-}
+    const handleToggleNotifications = () => {
+        setNotificationsEnabled(!notificationsEnabled);
+    };
 
-function Notifications() {
-  const [userResponded, setUserResponded] = useState(false);
+    const handleToggleNotificationType = (type) => {
+        setNotificationTypes((prev) => ({
+            ...prev,
+            [type]: !prev[type],
+        }));
+    };
 
-  // Enable notifications and set response state
-  const enableNotifsAndClose = async () => {
-    await notifyUser();
-    setUserResponded(true);
-  };
+    const handleSaveChanges = () => {
+        // Here you can implement the logic to save changes to the backend if needed
+        alert('Changes saved successfully!');
+    };
 
-  // Disable notifications and set response state
-  const disableNotifsAndClose = () => {
-    setUserResponded(true);
-  };
-
-  // If the user has responded, display a message accordingly
-  if (userResponded) {
-    return Notification.permission === "granted" ? null : <h1>You have disabled notifications</h1>;
-  }
-
-  // Display prompt if notifications are not granted
-  if (Notification.permission !== "granted") {
     return (
-      <ChakraProvider>
-        <Container maxW="md" mt="5">
-          <Alert status="success" variant="left-accent">
-            <AlertIcon />
-            <Box flex="1">
-              <AlertTitle>Notification</AlertTitle>
-              <AlertDescription>
-                Would you like to enable notifications?
-              </AlertDescription>
-            </Box>
-            <Button colorScheme="teal" size='sm' onClick={enableNotifsAndClose} ml={4}>
-              Sure!
-            </Button>
-            <Button colorScheme="gray" size='sm' onClick={disableNotifsAndClose} ml={2}>
-              No thanks!
-            </Button>
-          </Alert>
-        </Container>
-      </ChakraProvider>
+        <div className="max-w-lg mx-auto bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-2xl font-semibold mb-4">Push Notifications</h2>
+            <div className="mb-6">
+                <label className="inline-flex items-center">
+                    <input
+                        type="checkbox"
+                        checked={notificationsEnabled}
+                        onChange={handleToggleNotifications}
+                        className="form-checkbox h-5 w-5 text-blue-600"
+                    />
+                    <span className="ml-2">Enable Push Notifications</span>
+                </label>
+            </div>
+            {notificationsEnabled && (
+                <div>
+                    <h3 className="text-lg font-medium mb-4">Notification Types</h3>
+                    <div className="space-y-4">
+                        <label className="inline-flex items-center">
+                            <input
+                                type="checkbox"
+                                checked={notificationTypes.marketing}
+                                onChange={() => handleToggleNotificationType('marketing')}
+                                className="form-checkbox h-5 w-5 text-blue-600"
+                            />
+                            <span className="ml-2">Marketing Notifications</span>
+                        </label>
+                        <label className="inline-flex items-center">
+                            <input
+                                type="checkbox"
+                                checked={notificationTypes.transaction}
+                                onChange={() => handleToggleNotificationType('transaction')}
+                                className="form-checkbox h-5 w-5 text-blue-600"
+                            />
+                            <span className="ml-2">Transaction Alerts</span>
+                        </label>
+                        <label className="inline-flex items-center">
+                            <input
+                                type="checkbox"
+                                checked={notificationTypes.reminders}
+                                onChange={() => handleToggleNotificationType('reminders')}
+                                className="form-checkbox h-5 w-5 text-blue-600"
+                            />
+                            <span className="ml-2">Reminders</span>
+                        </label>
+                    </div>
+                </div>
+            )}
+            <button 
+                onClick={handleSaveChanges} 
+                className="mt-6 w-full bg-blue-500 text-white rounded-md py-2 hover:bg-blue-600"
+            >
+                Save Changes
+            </button>
+        </div>
     );
-  }
+};
 
-  return null; // Default case if notifications are already granted
-}
-
-export default Notifications;
+export default PushNotifications;
