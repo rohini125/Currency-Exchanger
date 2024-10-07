@@ -13,7 +13,10 @@ import Account from "./Pages/Account.js";
 import Settings from "./Pages/Settings.js";
 import ChangePassword from "./Pages/Changepassword.js";
 import SecurityQuestions from "./Pages/SecurityQuestions.js";
-
+import TwoFactorAuthentication from "./Pages/TwoFactorAuthentication.js";
+import ContactSupport from "./Pages/ContactSupport.js";
+import FAQs from "./Pages/FAQs.js";
+import Logout from "./Pages/Logout.js"
 
 
 function App() {
@@ -31,8 +34,11 @@ function App() {
         <Route path="/account" element={<Account />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/changepassword" element={<ChangePassword />} />
-         <Route path="/security-questions" element={<SecurityQuestions />} />
-        
+        <Route path="/security-questions" element={<SecurityQuestions />} />
+        <Route path="/two-factor-authentication" element={<TwoFactorAuthentication />}/>
+        <Route path="/contact-support" element={< ContactSupport/>}/>
+        <Route path="/faqs" element={<FAQs/>}/> 
+        <Route path="/logout" element={<Logout/>}/>
         
       </Routes>
       <Footer />

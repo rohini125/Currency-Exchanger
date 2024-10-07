@@ -41,16 +41,22 @@ const Settings = () => {
             </div>
             <div className="mt-6">
                 <h3 className="text-lg font-medium mb-2">Help & Support</h3>
+                <Link to="/contact-support">
                 <button className="w-full text-left py-2 hover:bg-gray-100">
                     Contact Support
                 </button>
+                </Link>
+                <Link to="/faqs">
                 <button className="w-full text-left py-2 hover:bg-gray-100">
                     FAQs
                 </button>
+                </Link>
             </div>
+            <Link to="/logout">
             <button className="mt-6 w-full mb-20 bg-red-500 text-white rounded-md py-2 hover:bg-red-600">
                 Logout
             </button>
+            </Link>
         </div>
     );
 };
