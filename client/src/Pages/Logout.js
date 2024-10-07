@@ -1,57 +1,30 @@
-import React, { useState } from 'react';
-import Logout from './Logout'; // Adjust the import path as needed
-
-function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
-    const [showLogout, setShowLogout] = useState(false);
-    const [currentPage, setCurrentPage] = useState('home'); // Track the current page
-
-    const handleLogout = () => {
-        // Logic for logout (e.g., clearing tokens, session)
-        setIsLoggedIn(false);
-        alert('You have logged out successfully!');
-        // Optionally, redirect to a login page or perform other actions
-        setCurrentPage('home'); // Redirect to home or login
-    };
-
-    const handleCancel = () => {
-        setShowLogout(false);
-        setCurrentPage('settings'); // Navigate back to the settings page
-    };
-
+import React from 'react';
+ 
+function Logout({ onLogout, onCancel }) {
     return (
-        <div>
-            {isLoggedIn ? (
-                <div className="p-4 mt-20">
-                    <h1 className="text-2xl font-bold">Welcome to the Currency Converter App</h1>
+        <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+            <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-md">
+                <h1 className="text-2xl font-bold text-center mb-4">Logout</h1>
+                <p className="text-gray-700 text-center mb-6">
+                    Are you sure you want to log out?
+                </p>
+                <div className="flex justify-center">
                     <button
-                        className="mt-4 bg-blue-500 text-white rounded p-2"
-                        onClick={() => setShowLogout(true)}
+                        className="bg-red-500 text-white rounded p-2 w-32 mr-4 hover:bg-red-600"
+                        onClick={onLogout}
                     >
                         Logout
                     </button>
+                    <button
+                        className="bg-gray-300 text-gray-700 rounded p-2 w-32 hover:bg-gray-400"
+                        onClick={onCancel}
+                    >
+                        Cancel
+                    </button>
                 </div>
-            ) : (
-                <h1 className="text-2xl font-bold text-center">You are logged out</h1>
-            )}
-
-            {showLogout && (
-                <Logout
-                    onLogout={handleLogout}
-                    onCancel={handleCancel}
-                />
-            )}
-
-            {currentPage === 'settings' && (
-                <div className="p-4">
-                    <h2 className="text-xl font-bold">Settings Page</h2>
-                    {/* Add more settings options here */}
-                    <p>Settings options go here...</p>
-                </div>
-            )}
+            </div>
         </div>
     );
 }
 
-export default App;
-
+export default Logout;

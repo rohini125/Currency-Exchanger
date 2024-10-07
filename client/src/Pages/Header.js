@@ -32,7 +32,7 @@ const Header = () => {
 
         {/* Right Icons (Notification and Help) - Always Visible */}
         <div className="flex space-x-6 items-center">
-          <Link to="/notification" className="flex items-center text-white hover:underline">
+          <Link to="/notifications" className="flex items-center text-white hover:underline">
             <FiBell className="h-5 w-5" />
           </Link>
           <Link to="/help" className="flex items-center text-white hover:underline">
