@@ -11,7 +11,7 @@ function TwoFactorAuthentication() {
 
     const handleRegister = async () => {
         try {
-            await axios.post('http://localhost:3000/register', { username, password, phone });
+            await axios.post('http://localhost:5000/register', { username, password, phone });
             alert('User registered');
             setIsRegistering(false);
         } catch (error) {
@@ -21,7 +21,7 @@ function TwoFactorAuthentication() {
 
     const handleLogin = async () => {
         try {
-            await axios.post('http://localhost:3000/login', { username, password });
+            await axios.post('http://localhost:5000/login', { username, password });
             alert('Check your SMS for the 2FA code');
         } catch (error) {
             alert('Login failed. Please check your credentials.');
@@ -30,7 +30,7 @@ function TwoFactorAuthentication() {
 
     const handleVerify = async () => {
         try {
-            const response = await axios.post('http://localhost:3000/verify', { username, code });
+            const response = await axios.post('http://localhost:5000/verify', { username, code });
             alert(response.data.message);
             setIsLoggedIn(true);
         } catch (error) {
