@@ -2,14 +2,14 @@ import React from 'react';
 
 const HelpPage = () => {
   return (
-    <div className="container mx-auto p-6 mt-20 bg-gray-50">
+    <div className="container mx-auto p-6 bg-gray-50">
       <header className="text-center mb-8">
         <h1 className="text-4xl font-bold text-gray-800">Help Center</h1>
-        <input
+        {/* <input
           type="text"
           placeholder="Search for help..."
           className="mt-4 p-3 border border-gray-300 rounded shadow-md w-full max-w-md mx-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+        /> */}
       </header>
 
       <section className="mb-8">
@@ -110,99 +110,3 @@ export default HelpPage;
 
 
 
-// import React from 'react';
-
-// const HelpPage = () => {
-//   return (
-//     <div className="container mx-auto p-4">
-//       <header className="text-center mb-6">
-//         <h1 className="text-3xl font-bold">Help Center</h1>
-//         <input
-//           type="text"
-//           placeholder="Search for help..."
-//           className="mt-2 p-2 border border-gray-300 rounded w-full max-w-md mx-auto"
-//         />
-//       </header>
-
-//       <section className="mb-8">
-//         <h2 className="text-2xl font-semibold mb-4">Popular Topics</h2>
-//         <ul className="list-disc ml-5">
-//           <li><a href="#sending-money">Sending Money</a></li>
-//           <li><a href="#account-setup">Account Setup</a></li>
-//           <li><a href="#kyc-verification">KYC Verification</a></li>
-//           <li><a href="#transaction-issues">Transaction Issues</a></li>
-//         </ul>
-//       </section>
-
-//       <section className="mb-8">
-//         <h2 className="text-2xl font-semibold mb-4">FAQs</h2>
-        
-//         <div id="account-setup">
-//           <h3 className="text-xl font-semibold">Account Questions</h3>
-//           <div className="mb-2">
-//             <strong>How do I create an account?</strong>
-//             <p>To create an account, download the app, select "Sign Up," and follow the prompts.</p>
-//           </div>
-//         </div>
-
-//         <div id="transaction-issues" className="mt-4">
-//           <h3 className="text-xl font-semibold">Transaction Questions</h3>
-//           <div className="mb-2">
-//             <strong>How can I send money?</strong>
-//             <p>Navigate to the "Transfer Money" section, enter the recipient’s details, and confirm the transaction.</p>
-//           </div>
-//         </div>
-
-//         <div id="security-questions" className="mt-4">
-//           <h3 className="text-xl font-semibold">Security Questions</h3>
-//           <div className="mb-2">
-//             <strong>How do I keep my account secure?</strong>
-//             <p>Ensure you enable two-factor authentication and regularly update your password.</p>
-//           </div>
-//         </div>
-//       </section>
-
-//       <section className="mb-8">
-//         <h2 className="text-2xl font-semibold mb-4">Step-by-Step Guides</h2>
-//         <div className="mb-2">
-//           <h3 className="text-xl font-semibold">How to Transfer Money:</h3>
-//           <ol className="list-decimal ml-5">
-//             <li>Open the app and log in.</li>
-//             <li>Go to "Transfer Money."</li>
-//             <li>Enter recipient details and amount.</li>
-//             <li>Confirm the transaction.</li>
-//           </ol>
-//         </div>
-//       </section>
-
-//       <section className="mb-8">
-//         <h2 className="text-2xl font-semibold mb-4">Contact Support</h2>
-//         <p>If you have any questions or need assistance, please reach out to us:</p>
-//         <ul className="list-none ml-5">
-//           <li>Phone: [Customer Support Number]</li>
-//           <li>Email: [Support Email]</li>
-//           <li>Chat: Available in the app.</li>
-//         </ul>
-//       </section>
-
-//       <section>
-//         <h2 className="text-2xl font-semibold mb-4">Feedback</h2>
-//         <p>We value your feedback! Let us know how we can improve:</p>
-//         <form className="mt-4">
-//           <textarea
-//             placeholder="Your feedback..."
-//             className="p-2 border border-gray-300 rounded w-full h-24"
-//           />
-//           <button
-//             type="submit"
-//             className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
-//           >
-//             Submit
-//           </button>
-//         </form>
-//       </section>
-//     </div>
-//   );
-// };
-
-// export default HelpPage;
