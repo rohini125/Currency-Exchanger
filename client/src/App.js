@@ -8,10 +8,14 @@ import CurrencyConverter from "./Pages/currency-converter.js";
 import Notifications from "./Pages/Notifications.js";
 import HelpPage from "./Pages/HelpPage.js";
 import Markets from "./Pages/Markets.js";
+// import TransactionMoney from "./Pages/TransactionMoney";
+import To_mobileNumber from "./Pages/To_mobileNumber.js";
+import To_Bank_UPI from "./Pages/To_Bank_UPI.js";
+import To_SelfAccount from "./Pages/To_SelfAccount.js";
 
 function App() {
   return (
-    <div className="bg-gray-50 h-full w-full">
+    <div className="bg-gray-50 h-full w-full py-20">
     <Header/>
     <Routes>
       <Route path="/register" element={<Register />} />
@@ -20,6 +24,9 @@ function App() {
       <Route path="/markets" element={<Markets />} />
       <Route path="/help" element={<HelpPage />} />
       <Route path="/notifications" element={<Notifications />} />
+      <Route path="/to-mobile-number" element={<To_mobileNumber />} />
+      <Route path="/to-bank-upi" element={<To_Bank_UPI />} />
+      <Route path="/to-self-account" element={<To_SelfAccount />} />
     </Routes>
     <Footer/>
     </div>
