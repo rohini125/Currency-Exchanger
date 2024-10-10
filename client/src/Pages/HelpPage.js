@@ -2,7 +2,7 @@ import React from 'react';
 
 const HelpPage = () => {
   return (
-    <div className="container mx-auto p-6 bg-gray-50 ">
+    <div className="container mx-auto p-6 bg-gray-50">
       <header className="text-center mb-8">
         <h1 className="text-4xl font-bold text-gray-800">Help Center</h1>
         {/* <input
@@ -96,7 +96,7 @@ const HelpPage = () => {
           />
           <button
             type="submit"
-            className="mt-2 px-5 py-3 bg-blue-600 text-white rounded shadow hover:bg-blue-500 transition duration-300"
+            className="mt-2 mb-20 px-5 py-3 bg-blue-600 text-white rounded shadow hover:bg-blue-500 transition duration-300"
           >
             Submit
           </button>

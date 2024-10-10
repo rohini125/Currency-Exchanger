@@ -11,7 +11,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="bg-blue-600 p-4 shadow-md fixed top-0 left-0 w-full z-50">
+    <nav className="bg-blue-600 p-4 mb-50 shadow-md fixed top-0 left-0 w-full z-50">
       <div className="container mx-auto flex justify-between items-center relative">
         {/* Profile Icon and QR Code Icon */}
         <div className="flex items-center space-x-4">
@@ -32,7 +32,7 @@ const Header = () => {
 
         {/* Right Icons (Notification and Help) - Always Visible */}
         <div className="flex space-x-6 items-center">
-          <Link to="/notification" className="flex items-center text-white hover:underline">
+          <Link to="/notifications" className="flex items-center text-white hover:underline">
             <FiBell className="h-5 w-5" />
           </Link>
           <Link to="/help" className="flex items-center text-white hover:underline">
