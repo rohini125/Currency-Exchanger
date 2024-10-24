@@ -2,58 +2,136 @@ import { Col, Form, Row, Input, Select, Button, Card } from "antd";
 // import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Register() 
-{
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    mobile: '',
-    identificationType:'',  
-    identificationNumber:'',
-    password:'',
-    confirmPassword:'' 
+
+function Register() {
+  const [data, setData] = useState({
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      contactNo: '',
+      city: '',
+      identificationType: '',
+      identificationNumber: '',
   });
- 
   const [formErrors, setFormErrors] = useState({});
-      const [isSubmitted, setIsSubmitted] = useState(false);
-    
-      const validate = () => {
-        const errors = {};
-        if (!formData.firstName) errors.firstName = 'First Name is required';
-        if (!formData.lastName) errors.lastName = 'Last Name is required';
-        if (!formData.email) errors.email = 'Email is required';
-        if (!formData.mobile) errors.mobile = 'Mobile is required';
-        if (!formData.identificationType) errors.identificationType = 'Identification Type is required';
-        if (!formData.identificationNumber) errors.identificationNumber = 'Identification Number is required';
-        if (!formData.password) errors.password = 'Password is required';
-        if (!formData.confirmPassword) errors.confirmPassword = 'Confirm Password is required';
-        return errors;
-      };
-    
-      const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-      };
-      // const navigate = useNavigate();
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // handle form submission
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const [passwordError, setPasswordError] = useState('');
+  const [identificationError, setIdentificationError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+      const { name, value } = e.target;
+      setData({ ...data, [name]: value });
+
+      // Reset errors when user types
+      if (name === 'email') setEmailError('');
+      if (name === 'confirmPassword') setPasswordError('');
+      if (name === 'identificationNumber') setIdentificationError('');
+  };
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
+      e.preventDefault();
 
-    try {
-        // Make a POST request to your backend API
-        const response = await axios.post('http://192.168.1.4:5000/User', formData);
-        console.log(response);
-        if(response.status === 200){
-          alert('successfully register');
-        }
-        
-    } catch (error) {
-        console.error('There was an error submitting the form!', error);
-        alert('registration submit for error');
+      // // Check if passwords match before submitting
+      // if (data.password !== data.confirmPassword) {
+      //     setPasswordError('Password do not match');
+      //     return;
+      // }
+
+      // // Email validation (you can add more robust email regex if needed)
+      // if (!/\S+@\S+\.\S+/.test(data.email)) {
+      //     setEmailError('Please enter a valid email address');
+      //     return;
+      // }
+
+      try {
+          console.log('data ', data);
+          const response = await axios.post('http://192.168.1.13:5000/auth/register', data);
+          console.log(' response ', response)
+
+
+
+          if (response.status === 200) {
+              alert(response.data.message);
+              setIsSubmitted(true);
+              navigate('/SignUp');
+          }
+      } catch (error) {
+          console.error('Error:', error.response?.data || error.message);
+          alert('There was an error submitting the form. Please try again.');
       }
   };
+
+
+  const togglePasswordVisibility = () => {
+      setPasswordVisible(!passwordVisible);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+      setConfirmPasswordVisible(!confirmPasswordVisible);
+  };
+
+
+
+// function Register() 
+// {
+//   const [formData, setFormData] = useState({
+//     firstName: '',
+//     lastName: '',
+//     email: '',
+//     mobile: '',
+//     identificationType:'',  
+//     identificationNumber:'',
+//     password:'',
+//     confirmPassword:'' 
+//   });
+ 
+//   const [formErrors, setFormErrors] = useState({});
+//       const [isSubmitted, setIsSubmitted] = useState(false);
+    
+//       const validate = () => {
+//         const errors = {};
+//         if (!formData.firstName) errors.firstName = 'First Name is required';
+//         if (!formData.lastName) errors.lastName = 'Last Name is required';
+//         if (!formData.email) errors.email = 'Email is required';
+//         if (!formData.mobile) errors.mobile = 'Mobile is required';
+//         if (!formData.identificationType) errors.identificationType = 'Identification Type is required';
+//         if (!formData.identificationNumber) errors.identificationNumber = 'Identification Number is required';
+//         if (!formData.password) errors.password = 'Password is required';
+//         if (!formData.confirmPassword) errors.confirmPassword = 'Confirm Password is required';
+//         return errors;
+//       };
+    
+//       const handleChange = (e) => {
+//         setFormData({ ...formData, [e.target.name]: e.target.value });
+//       };
+//       // const navigate = useNavigate();
+
+//   // handle form submission
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     try {
+//         // Make a POST request to your backend API
+//         const response = await axios.post('http://192.168.1.4:5000/User', formData);
+//         console.log(response);
+//         if(response.status === 200){
+//           alert('successfully register');
+//         }
+        
+//     } catch (error) {
+//         console.error('There was an error submitting the form!', error);
+//         alert('registration submit for error');
+//       }
+//   };
 
   // const onFinish = async (values) => {
   //   console.log("Received values of form: ", values);
@@ -108,7 +186,7 @@ function Register()
               <Form.Item
                 label="First Name"
                 name="firstName"
-                value={formData.firstName}
+                value={data.firstName}
                 onChange={handleChange}
                 rules={[{ required: true, message: "Please enter your first name" }]}
               >
@@ -121,7 +199,7 @@ function Register()
               <Form.Item
                 label="Last Name"
                 name="lastName"
-                value={formData.lastName}
+                value={data.lastName}
                 onChange={handleChange}
                 rules={[{ required: true, message: "Please enter your last name" }]}
               >
@@ -134,7 +212,7 @@ function Register()
               <Form.Item
                 label="Email"
                 name="email"
-                value={formData.email}
+                value={data.email}
                 onChange={handleChange}
                 rules={[
                   { required: true, message: "Please enter your email" },
@@ -150,7 +228,7 @@ function Register()
               <Form.Item
                 label="Mobile"
                 name="mobile"
-                value={formData.mobile}
+                value={data.mobile}
                 onChange={handleChange}
                 rules={[
                   { required: true, message: "Please enter your mobile number" },
@@ -166,7 +244,7 @@ function Register()
               <Form.Item
                 label="Identification Type"
                 name="identificationType"
-                value={formData.identificationType}
+                value={data.identificationType}
                 onChange={handleChange}
                 rules={[{ required: true, message: "Please select an identification type" }]}
               >
@@ -185,7 +263,7 @@ function Register()
               <Form.Item
                 label="Identification Number"
                 name="identificationNumber"
-                value={formData.identificationNumber}
+                value={data.identificationNumber}
                 onChange={handleChange}
                 rules={[{ required: true, message: "Please enter your identification number" }]}
               >
@@ -198,7 +276,7 @@ function Register()
               <Form.Item
                 label="Password"
                 name="password"
-                value={formData.password}
+                value={data.password}
                 onChange={handleChange}
                 rules={[
                   { required: true, message: "Please enter your password" },
@@ -214,7 +292,7 @@ function Register()
               <Form.Item
                 label="Confirm Password"
                 name="confirmPassword"
-                value={formData.confirmPassword}
+                value={data.confirmPassword}
                 onChange={handleChange}
                 dependencies={["password"]}
                 rules={[
