@@ -1,109 +1,135 @@
 import React, { useState } from 'react';
 
-const ProfilePage = () => {
-    const [user, setUser] = useState({
-        name: "John Doe",
-        email: "johndoe@example.com",
-        balance: "$100.00",
-        favoriteCurrencies: ["USD", "EUR", "GBP"],
-        transactionHistory: [
-            "Converted $50 to EUR",
-            "Converted $20 to GBP"
-        ]
+const ProfileHeader = () => {
+  const [user, setUser] = useState({
+    name: 'John Doe',
+    phone: '+1 234 567 890',       // Registered Phone Number
+    upiId: 'john.doe@upi',
+    walletBalance: 5000, // Set initial balance as a number
+    profilePicture: 'https://via.placeholder.com/150', // Placeholder image
+  });
+
+  const [isEditing, setIsEditing] = useState(false); // State to toggle edit mode
+  const [editName, setEditName] = useState(user.name); // Store edited name
+  const [editProfilePicture, setEditProfilePicture] = useState(user.profilePicture); // Store edited profile picture
+
+  // Function to handle save
+  const handleSave = () => {
+    setUser({
+      ...user,
+      name: editName,
+      profilePicture: editProfilePicture,
     });
+    setIsEditing(false); // Exit edit mode
+  };
 
-    const [isEditing, setIsEditing] = useState(false);
-    const [editedName, setEditedName] = useState(user.name);
-    const [editedEmail, setEditedEmail] = useState(user.email);
-    const [editedCurrencies, setEditedCurrencies] = useState(user.favoriteCurrencies.join(", ")); // Comma-separated for easy editing
+  // Function to handle profile picture upload
+  const handleProfilePictureChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setEditProfilePicture(reader.result);
+      };
+      reader.readAsDataURL(file); // Read the image as data URL
+    }
+  };
 
-    const handleSaveChanges = () => {
-        setUser(prevUser => ({
-            ...prevUser,
-            name: editedName,
-            email: editedEmail,
-            favoriteCurrencies: editedCurrencies.split(",").map(currency => currency.trim()), // Split and trim to get an array
-        }));
-        setIsEditing(false);
-        alert('Profile updated successfully!');
-    };
+  // Function to refresh wallet balance (simulate fetching from server)
+  const refreshWalletBalance = () => {
+    // Simulating a fetch operation
+    const newBalance = Math.floor(Math.random() * 10000); // Random balance for demo purposes
+    setUser((prevState) => ({
+      ...prevState,
+      walletBalance: newBalance,
+    }));
+  };
 
-    return (
-        <div className="max-w-sm mx-auto mt-20 mb-20 bg-white rounded-lg shadow-md p-6">
-            <div className="text-center">
-                <img src="..\.\page\Assets\Profile.png" alt={`${user.name}'s profile`} className="w-24 h-24 rounded-full mx-auto mb-4" />
-                <h2 className="text-xl font-semibold">{user.name}</h2>
-                <p className="text-gray-500">{user.email}</p>
-            </div>
-
+  return (
+    <div className="max-w-md mx-auto mt-10">
+      <div className="bg-white shadow-lg rounded-lg p-6">
+        <div className="flex items-center">
+          <div className="mr-6">
             {isEditing ? (
-                <div className="mt-6">
-                    <h3 className="text-lg font-medium">Edit Profile</h3>
-                    <form onSubmit={(e) => { e.preventDefault(); handleSaveChanges(); }}>
-                        <div className="mt-4">
-                            <label className="block text-sm font-medium text-gray-700">Name</label>
-                            <input 
-                                type="text" 
-                                value={editedName} 
-                                onChange={(e) => setEditedName(e.target.value)} 
-                                className="mt-1 block w-full border border-gray-300 rounded-md p-2" 
-                            />
-                        </div>
-                        <div className="mt-4">
-                            <label className="block text-sm font-medium text-gray-700">Email</label>
-                            <input 
-                                type="email" 
-                                value={editedEmail} 
-                                onChange={(e) => setEditedEmail(e.target.value)} 
-                                className="mt-1 block w-full border border-gray-300 rounded-md p-2" 
-                            />
-                        </div>
-                        <div className="mt-4">
-                            <label className="block text-sm font-medium text-gray-700">Favorite Currencies (comma separated)</label>
-                            <input 
-                                type="text" 
-                                value={editedCurrencies} 
-                                onChange={(e) => setEditedCurrencies(e.target.value)} 
-                                className="mt-1 block w-full border border-gray-300 rounded-md p-2" 
-                                placeholder="USD, EUR, GBP"
-                            />
-                        </div>
-                        <button type="submit" className="mt-6 mb-20 w-full bg-blue-500 text-white rounded-md py-2 hover:bg-blue-600 transition duration-200">
-                            Save Changes
-                        </button>
-                    </form>
-                </div>
+              <label className="cursor-pointer">
+                <img
+                  className="w-20 h-20 rounded-full object-cover"
+                  src={editProfilePicture}
+                  alt="Profile"
+                />
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleProfilePictureChange}
+                />
+              </label>
             ) : (
-                <>
-                    <div className="mt-6">
-                        <h3 className="text-lg font-medium">Available Balance</h3>
-                        <p className="text-xl">{user.balance}</p>
-                    </div>
-                    <div className="mt-6">
-                        <h3 className="text-lg font-medium">Favorite Currencies</h3>
-                        <ul className="list-disc pl-5">
-                            {user.favoriteCurrencies.map(currency => (
-                                <li key={currency}>{currency}</li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className="mt-6">
-                        <h3 className="text-lg font-medium">Transaction History</h3>
-                        <ul className="list-disc pl-5">
-                            {user.transactionHistory.map((transaction, index) => (
-                                <li key={index}>{transaction}</li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className='mt-4 mb-20'>
-                        <button onClick={() => setIsEditing(true)} className="mt-6 w-full bg-blue-500 text-white rounded-md py-2 hover:bg-blue-600 transition duration-200">
-                            Edit Profile
-                        </button>
-                    </div>
-                </>
+              <img
+                className="w-20 h-20 rounded-full object-cover"
+                src={user.profilePicture}
+                alt="Profile"
+              />
             )}
+          </div>
+
+          <div className="flex flex-col">
+            {isEditing ? (
+              <>
+                <input
+                  type="text"
+                  value={editName}
+                  onChange={(e) => setEditName(e.target.value)}
+                  className="text-xl font-semibold border border-gray-300 rounded px-2 py-1 mb-2 focus:outline-none focus:ring focus:ring-blue-300"
+                />
+                
+                {/* Registered Phone (Non-editable) */}
+                <p className="text-gray-500 mb-2">Phone: {user.phone}</p>
+
+                <div className="flex space-x-4">
+                  <button
+                    onClick={handleSave}
+                    className="mt-2 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => setIsEditing(false)}
+                    className="mt-2 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <h2 className="text-xl font-semibold">{user.name}</h2>
+                <p className="text-gray-500">Phone: {user.phone}</p>
+                <p className="text-gray-500">UPI ID: {user.upiId}</p>
+                <button
+                  onClick={() => setIsEditing(true)}
+                  className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                >
+                  Edit Profile
+                </button>
+              </>
+            )}
+          </div>
         </div>
-    );
+
+        <div className="mt-6 bg-gray-100 p-4 rounded-lg">
+          <h3 className="text-lg font-semibold">Wallet Balance</h3>
+          <p className="text-green-500 text-xl font-medium">₹ {user.walletBalance}</p>
+          <button
+            onClick={refreshWalletBalance}
+            className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          >
+            Refresh Balance
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default ProfilePage;
+export default ProfileHeader;
